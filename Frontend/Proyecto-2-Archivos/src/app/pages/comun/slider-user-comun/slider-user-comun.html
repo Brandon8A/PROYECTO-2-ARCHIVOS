@@ -1,0 +1,22 @@
+<div class="menu-container" [class.open]="isOpen">
+    <div class="menu">
+        <button class="close-btn" (click)="toogleMenu()">X</button>
+        <ul>
+            <li><a routerLink="home-user">Inicio</a></li>
+        </ul>
+        <ul>
+            <li><a routerLink="publicar-producto">Publicar producto</a></li>
+        </ul>
+        <ul>
+            <li><a routerLink="comentar-producto">Comentar Productos</a></li>
+        </ul>
+        <ul>
+            <li><a routerLink="listar-pedidos">Pedidos</a></li>
+        </ul>
+        <ul>
+            <li><a routerLink="">Cerrar Sesion</a></li>
+        </ul>
+    </div>
+</div>
+
+<button class="open-btn" (click)="toogleMenu()" >Menu</button>

@@ -1,0 +1,43 @@
+<!-- establecer titulo en el centro -->
+<h1 class="text-center">Ingreso de productos</h1>
+<div class="content">
+    <div class="card-container">
+        <div class="card">
+            <div class="card-header">
+                <h2>Productos en espera de aprobación</h2>
+            </div>
+            <div class="card-body">
+                <table class="table w-full">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Nombre Producto</th>
+                            <th>Descripción</th>
+                            <th>Precio</th>
+                            <th>Cantidad</th>
+                            <th>Categoria</th>
+                            <th>Opción</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!--
+                        @for (servicio of servicios; track $index) {
+                        <tr>
+                            <td>{{$index+1}}</td>
+                            <td>{{servicio.nombreServicio}}</td>
+                            <td>{{servicio.descripcion}}</td>
+                            <td>{{servicio.precio}}</td>
+                            <td>{{servicio.tiempoServicio}}</td>
+                            <td class="space-x-2">
+                                <button class="btn btn-sm btn-info" (click)="reservarCita(servicio.nombreServicio)">Aceptar</button>
+                                <button class="btn btn-sm btn-danger">Rechazar</button>
+                            </td>
+                        </tr>
+                        }
+                        -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
