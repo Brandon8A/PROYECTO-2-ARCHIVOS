@@ -3,6 +3,8 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { Router } from '@angular/router';
 import { Encabezado } from '../../compartido/encabezado/encabezado';
 import { RegistroUsuarioComun } from '../../../servicios/registro-usuario-comun';
+import { AutenticacionRegistroService } from '../../../servicios/autenticacion-registro-service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-registrar-usuario',
@@ -11,6 +13,7 @@ import { RegistroUsuarioComun } from '../../../servicios/registro-usuario-comun'
   styleUrl: './registrar-usuario.css'
 })
 export class RegistrarUsuario {
+
   emailCliente: string = '';
   passwordCliente: string = '';
 
@@ -20,7 +23,7 @@ export class RegistrarUsuario {
   correo: FormControl;
   contrasenia: FormControl;
 
-  constructor(private router: Router, public servicioUsuario: RegistroUsuarioComun) {
+  constructor(private router: Router, public servicioUsuario: RegistroUsuarioComun, public registroUsuario: AutenticacionRegistroService) {
     this.dpi = new FormControl('', Validators.required);
     this.nombre = new FormControl('', Validators.required);
     this.correo = new FormControl('', [Validators.required, Validators.email]);
@@ -48,7 +51,7 @@ export class RegistrarUsuario {
     var emailLogueado = this.registerForm.get('email')?.value;
     var password = this.registerForm.get('password')?.value
 
-    
+    /*
     this.servicioUsuario.crearUsuario(this.registerForm.value).subscribe({
       next: (data) => {
         console.log('Usuario creado con éxito:', data);
@@ -57,9 +60,19 @@ export class RegistrarUsuario {
         console.error('Error al crear el usuario:', error);
       }
     });
-      
-    console.log(this.registerForm.value);
+    */
 
+    this.registroUsuario.register(this.registerForm.value).subscribe({
+      next: (response) => {
+        console.log('Usuario registrado con éxito', response);
+        localStorage.setItem('token', response.token);
+        localStorage.setItem('correo', response.correo);
+        this.router.navigate(['/home-user']);
+      },
+      error: (err) => {
+        console.error('Error al registrar el usuario:', err);
+      }
+    });
   }
 }
 

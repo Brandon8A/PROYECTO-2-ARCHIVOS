@@ -5,7 +5,7 @@
         <div class="card">
             <div class="card-header">
                 <h2>
-                    Top 10 clientes que más productos tienen a la venta.
+                    Pedidos en Curso.
                 </h2>
             </div>
             <div class="card-body">
@@ -20,21 +20,22 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <!--
-                        @for (servicio of servicios; track $index) {
+                        @for (pedido of pedidosEnCurso; track $index) {
                         <tr>
                             <td>{{$index+1}}</td>
-                            <td>{{servicio.nombreServicio}}</td>
-                            <td>{{servicio.descripcion}}</td>
-                            <td>{{servicio.precio}}</td>
-                            <td>{{servicio.tiempoServicio}}</td>
+                            <td>{{pedido.idPedido}}</td>
+                            <td>{{pedido.fechaEntrega}}</td>
+                            <td>{{pedido.estado}}</td>
                             <td class="space-x-2">
+                                <!--
                                 <button class="btn btn-sm btn-info" (click)="reservarCita(servicio.nombreServicio)">Comentar</button>
-                                <button class="btn btn-sm btn-danger">Calificar</button>
+                            -->
+                                <button class="btn btn-sm btn-info" (click)="entregarProducto()">Entregar Producto</button>
+                                <button class="btn btn-sm btn-danger">Cambiar fecha de entrega</button>
                             </td>
                         </tr>
                         }
-                        -->
+                    
                     </tbody>
                 </table>
             </div>

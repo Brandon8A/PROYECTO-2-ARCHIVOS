@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterOutlet } from '@angular/router';
+import { CrearUsuarioServicio } from '../../../servicios/servicios-admin/crear-usuario-servicio';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-crear-usuario',
@@ -10,34 +12,44 @@ import { Router, RouterOutlet } from '@angular/router';
 })
 export class CrearUsuario {
   registerForm: FormGroup;
-  email: FormControl;
-  password: FormControl;
+  correo: FormControl;
+  contrasenia: FormControl;
   dpi: FormControl;
   nombre: FormControl;
   rol: FormControl;
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private servicioCreearUsuario: CrearUsuarioServicio) {
 
-    this.email = new FormControl('', Validators.required);
-    this.password = new FormControl('', Validators.required);
+    this.correo = new FormControl('', Validators.required);
+    this.contrasenia = new FormControl('', Validators.required);
     this.dpi = new FormControl('', Validators.required);
     this.nombre = new FormControl('', Validators.required);
     this.rol = new FormControl('', Validators.required);
 
     this.registerForm = new FormGroup({
-      email: this.email,
-      password: this.password,
-      userDpi: this.dpi,
+      correo: this.correo,
+      contrasenia: this.contrasenia,
+      dpi: this.dpi,
       nombre: this.nombre,
       rol: this.rol
     });
   }
 
-  registerUser() {
+  crearUsuario() {
     if (this.registerForm.invalid) {
       return;
     }
-    console.log("Formulario Crear Usuario.");
+    console.log(this.registerForm.value);
+
+    this.servicioCreearUsuario.crearUsuario(this.registerForm.value).subscribe({
+      next: (response) => {
+        Swal.fire('Éxito!', 'Usuario creado correctamente', 'success');
+        this.router.navigate(['/home-admin']);
+      },
+      error: (err) => {
+        console.error('Error al registrar el usuario:', err);
+      }
+    });
   }
 
   /*

@@ -5,6 +5,7 @@ import { Producto } from '../../../interfaces/producto/producto';
 
 @Component({
   selector: 'app-carrito-compras',
+  standalone: true,
   imports: [FormsModule, CommonModule],
   templateUrl: './carrito-compras.html',
   styleUrl: './carrito-compras.css'

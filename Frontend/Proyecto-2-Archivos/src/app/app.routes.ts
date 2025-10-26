@@ -17,6 +17,7 @@ import { SuspensionCuenta } from './pages/moderador/suspension-cuenta/suspension
 export const routes: Routes = [
     {path: '', component: Login},
     {path: 'registro', component: RegistrarUsuario,},
+    
     {path: 'home-admin', component: InicioAdmins,
         children: [
             {path: 'crear-usuario', component: CrearUsuario},

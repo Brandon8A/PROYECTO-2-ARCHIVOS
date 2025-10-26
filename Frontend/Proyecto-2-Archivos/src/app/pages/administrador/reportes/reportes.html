@@ -4,7 +4,7 @@
     <div class="card-container">
         <div class="card">
             <div class="card-header">
-                <form class="row g-3 align-items-end" (ngSubmit)="buscarPorIntervalo()">
+                <form class="row g-3 align-items-end" (ngSubmit)="obtenerProductosMasVendidosPorIntervalo()">
                     <div class="col-md-4">
                         <label for="fechaInicio" class="form-label">Desde:</label>
                         <input type="date" id="fechaInicio" class="form-control" [(ngModel)]="fechaInicio" name="fechaInicio" required>
@@ -20,11 +20,29 @@
                 <h2>Top 10 productos más vendidos.</h2>
             </div>
             <div class="card-body">
+                <table class="table w-full">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Nombre producto</th>
+                            <th>Total vendidos</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for (productos of topProductos; track $index) {
+                        <tr>
+                            <td>{{$index+1}}</td>
+                            <td>{{productos.nombre}}</td>
+                            <td>{{productos.total_vendidos}}</td>
+                        </tr>
+                        }
+                    </tbody>
+                </table>
             </div>
         </div>
         <div class="card">
             <div class="card-header">
-                <form class="row g-3 align-items-end" (ngSubmit)="buscarPorIntervalo()">
+                <form class="row g-3 align-items-end" (ngSubmit)="topClientesQueMasGananciasPorComprasHanGenerado()">
                     <div class="col-md-4">
                         <label for="fechaInicio" class="form-label">Desde:</label>
                         <input type="date" id="fechaInicio" class="form-control" [(ngModel)]="fechaInicio" name="fechaInicio" required>
@@ -42,12 +60,31 @@
                 </h2>
             </div>
             <div class="card-body">
-                
+                <table class="table w-full">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Correo</th>
+                            <th>DPI</th>
+                            <th>Nombre</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for (cliente of topClientesPorCompras; track $index) {
+                        <tr>
+                            <td>{{$index+1}}</td>
+                            <td>{{cliente.correo}}</td>
+                            <td>{{cliente.dpi}}</td>
+                            <td>{{cliente.nombre}}</td>
+                        </tr>
+                        }
+                    </tbody>
+                </table>
             </div>
         </div>
         <div class="card">
             <div class="card-header">
-                <form class="row g-3 align-items-end" (ngSubmit)="buscarPorIntervalo()">
+                <form class="row g-3 align-items-end" (ngSubmit)="clientesQueMasProductosHanVendido()">
                     <div class="col-md-4">
                         <label for="fechaInicio" class="form-label">Desde:</label>
                         <input type="date" id="fechaInicio" class="form-control" [(ngModel)]="fechaInicio" name="fechaInicio" required>
@@ -65,11 +102,31 @@
                 </h2>
             </div>
             <div class="card-body">
+                <table class="table w-full">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Correo</th>
+                            <th>DPI</th>
+                            <th>Nombre</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for (cliente of topClientesPorVentas; track $index) {
+                        <tr>
+                            <td>{{$index+1}}</td>
+                            <td>{{cliente.correo}}</td>
+                            <td>{{cliente.dpi}}</td>
+                            <td>{{cliente.nombre}}</td>
+                        </tr>
+                        }
+                    </tbody>
+                </table>
             </div>
         </div>
         <div class="card">
             <div class="card-header">
-                <form class="row g-3 align-items-end" (ngSubmit)="buscarPorIntervalo()">
+                <form class="row g-3 align-items-end" (ngSubmit)="clientesQueMasProductosHanVendido()">
                     <div class="col-md-4">
                         <label for="fechaInicio" class="form-label">Desde:</label>
                         <input type="date" id="fechaInicio" class="form-control" [(ngModel)]="fechaInicio" name="fechaInicio" required>
@@ -83,10 +140,30 @@
                     </div>
                 </form>
                 <h2>
-                    Top 5 clientes que más productos han vendido
+                    Top 10 clientes que más pedidos han realizado
                 </h2>
             </div>
             <div class="card-body">
+                <table class="table w-full">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Correo</th>
+                            <th>DPI</th>
+                            <th>Nombre</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for (cliente of topClientesPorVentas; track $index) {
+                        <tr>
+                            <td>{{$index+1}}</td>
+                            <td>{{cliente.correo}}</td>
+                            <td>{{cliente.dpi}}</td>
+                            <td>{{cliente.nombre}}</td>
+                        </tr>
+                        }
+                    </tbody>
+                </table>
             </div>
         </div>
         <div class="card">
@@ -96,6 +173,26 @@
                 </h2>
             </div>
             <div class="card-body">
+                <table class="table w-full">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Correo</th>
+                            <th>DPI</th>
+                            <th>Nombre</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for (cliente of topClientesConMasProductos; track $index) {
+                        <tr>
+                            <td>{{$index+1}}</td>
+                            <td>{{cliente.correo}}</td>
+                            <td>{{cliente.dpi}}</td>
+                            <td>{{cliente.nombre}}</td>
+                        </tr>
+                        }
+                    </tbody>
+                </table>
             </div>
         </div>
         <div class="card">
@@ -105,6 +202,34 @@
                 </h2>
             </div>
             <div class="card-body">
+                <table class="table w-full">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>ID</th>
+                            <th>Motivo</th>
+                            <th>Fecha Sancion</th>
+                            <th>Estado</th>
+                            <th>DPI</th>
+                            <th>Nombre</th>
+                            <th>Correo</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for (sancion of sanciones; track $index) {
+                        <tr>
+                            <td>{{$index+1}}</td>
+                            <td>{{sancion.idSancion}}</td>
+                            <td>{{sancion.motivo}}</td>
+                            <td>{{sancion.fechaSancion}}</td>
+                            <td>{{sancion.estado}}</td>
+                            <td>{{sancion.dpiUsuario}}</td>
+                            <td>{{sancion.nombre}}</td>
+                            <td>{{sancion.correo}}</td>
+                        </tr>
+                        }
+                    </tbody>
+                </table>
             </div>
         </div>
         <div class="card">
@@ -114,6 +239,26 @@
                 </h2>
             </div>
             <div class="card-body">
+                <table class="table w-full">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>ID</th>
+                            <th>Correo Notificado</th>
+                            <th>Fecha Notificacion</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for (notificacion of notificaciones; track $index) {
+                        <tr>
+                            <td>{{$index+1}}</td>
+                            <td>{{notificacion.id_notificacion}}</td>
+                            <td>{{notificacion.correo_notificado}}</td>
+                            <td>{{notificacion.fecha_notificacion}}</td>
+                        </tr>
+                        }
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
