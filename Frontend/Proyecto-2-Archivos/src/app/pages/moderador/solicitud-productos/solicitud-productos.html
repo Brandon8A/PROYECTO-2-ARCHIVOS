@@ -20,21 +20,20 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <!--
-                        @for (servicio of servicios; track $index) {
+                        @for (producto of productosNoAprobados; track $index) {
                         <tr>
                             <td>{{$index+1}}</td>
-                            <td>{{servicio.nombreServicio}}</td>
-                            <td>{{servicio.descripcion}}</td>
-                            <td>{{servicio.precio}}</td>
-                            <td>{{servicio.tiempoServicio}}</td>
+                            <td>{{producto.nombre_producto}}</td>
+                            <td>{{producto.descripcion}}</td>
+                            <td>{{producto.precio}}</td>
+                            <td>{{producto.stock}}</td>
+                            <td>{{producto.categoria}}</td>
                             <td class="space-x-2">
-                                <button class="btn btn-sm btn-info" (click)="reservarCita(servicio.nombreServicio)">Aceptar</button>
-                                <button class="btn btn-sm btn-danger">Rechazar</button>
+                                <button class="btn btn-sm btn-info" (click)="aceptarRechazarProducto(producto.id_producto, true)">Aceptar</button>
+                                <button class="btn btn-sm btn-danger" (click)="aceptarRechazarProducto(producto.id_producto, false)">Rechazar</button>
                             </td>
                         </tr>
                         }
-                        -->
                     </tbody>
                 </table>
             </div>

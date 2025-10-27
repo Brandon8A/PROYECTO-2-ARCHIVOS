@@ -13,6 +13,7 @@ import { ListarPedidos } from './pages/comun/listar-pedidos/listar-pedidos';
 import { PedidosEnCurso } from './pages/logistica/pedidos-en-curso/pedidos-en-curso';
 import { SolicitudProductos } from './pages/moderador/solicitud-productos/solicitud-productos';
 import { SuspensionCuenta } from './pages/moderador/suspension-cuenta/suspension-cuenta';
+import { Compra } from './pages/comun/compra/compra';
 
 export const routes: Routes = [
     {path: '', component: Login},
@@ -28,7 +29,8 @@ export const routes: Routes = [
         children: [
             {path: 'publicar-producto', component: PublicarProducto},
             {path: 'comentar-producto', component: ComentarProducto},
-            {path: 'listar-pedidos', component: ListarPedidos}
+            {path: 'listar-pedidos', component: ListarPedidos}, 
+            {path: 'compra', component: Compra}
         ]
     },
     {path: 'home-logistica', component: InicioLogistica,

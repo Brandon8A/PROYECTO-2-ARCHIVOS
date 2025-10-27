@@ -17,4 +17,16 @@ export class ServicioLogistica {
     });
     return this.http.get<any[]>(`${this.apiUrl}/obtenerPedidos`, { headers });
   }
+
+  actualizarEntregaProducto(idPedido: number): Observable<any> {
+    const token = localStorage.getItem('token');
+
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`,
+      'Content-Type': 'application/json'
+    });
+
+    // Se usa PUT y se pasa el id en la URL
+    return this.http.put(`${this.apiUrl}/entregar/${idPedido}`, {}, { headers, responseType: 'text' });
+  }
 }

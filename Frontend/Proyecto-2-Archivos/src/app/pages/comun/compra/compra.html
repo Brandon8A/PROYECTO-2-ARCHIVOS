@@ -1,0 +1,66 @@
+<div class="container mt-4">
+  <h2 class="text-center mb-4">🛍️ Catálogo de Productos</h2>
+
+  <!-- Productos -->
+  <div class="row row-cols-1 row-cols-md-3 g-4">
+    <div class="col" *ngFor="let producto of productos">
+      <div class="card h-100 shadow-sm">
+        <img [src]="producto.imagen || 'assets/img/no-image.png'" class="card-img-top" alt="Producto" style="height: 180px; object-fit: cover;">
+        <div class="card-body">
+          <h5 class="card-title">{{ producto.nombre }}</h5>
+          <p class="card-text">{{ producto.descripcion }}</p>
+          <p class="fw-bold text-success">Precio: Q {{ producto.precio | number:'1.2-2' }}</p>
+        </div>
+        <div class="card-footer text-center">
+          <button class="btn btn-primary w-100" (click)="agregarAlCarrito(producto)">Agregar al Carrito</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="my-5">
+
+  <!-- Carrito -->
+  <div class="carrito mt-5">
+    <h3 class="text-center mb-3">🛒 Carrito de Compras</h3>
+
+    <table class="table table-striped table-bordered text-center align-middle" *ngIf="carrito.length > 0; else carritoVacio">
+      <thead class="table-dark">
+        <tr>
+          <th>#</th>
+          <th>Producto</th>
+          <th>Precio (Q)</th>
+          <th>Cantidad</th>
+          <th>Subtotal (Q)</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let producto of carrito; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td>{{ producto.nombre }}</td>
+          <td>{{ producto.precio | number:'1.2-2' }}</td>
+          <td>
+            <input type="number" [(ngModel)]="producto.cantidad" min="1" class="form-control text-center" (change)="actualizarCarrito()" />
+          </td>
+          <td>{{ producto.precio * producto.cantidad | number:'1.2-2' }}</td>
+          <td>
+            <button class="btn btn-danger btn-sm" (click)="eliminarProducto(i)">Eliminar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <ng-template #carritoVacio>
+      <div class="alert alert-warning text-center">Tu carrito está vacío 🛍️</div>
+    </ng-template>
+
+    <div class="mt-4 text-end" *ngIf="carrito.length > 0">
+      <h4>Total a pagar: <strong>Q {{ total | number:'1.2-2' }}</strong></h4>
+      <div class="d-flex justify-content-end gap-2 mt-3">
+        <button class="btn btn-outline-danger" (click)="borrarCarrito()">Vaciar Carrito</button>
+        <button class="btn btn-primary" (click)="pagarCarrito()">Pagar Carrito</button>
+      </div>
+    </div>
+  </div>
+</div>

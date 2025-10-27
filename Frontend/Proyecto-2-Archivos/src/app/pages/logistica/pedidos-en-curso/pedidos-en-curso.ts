@@ -32,7 +32,13 @@ export class PedidosEnCurso implements OnInit {
     });
   }
 
-  entregarProducto(){
-    console.log("Producto Entregado");
+  entregarProducto(idPedido: number){
+    this.servicioLogistica.actualizarEntregaProducto(idPedido).subscribe({
+      next: () => {
+        alert('Pedido marcado como entregado');
+        this.obtenerPedidosEnCurso(); // refresca la tabla
+      },
+      error: (err) => console.error('Error al marcar como entregado', err)
+    });
   }
 }
