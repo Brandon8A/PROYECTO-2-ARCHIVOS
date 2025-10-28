@@ -1,13 +1,15 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AutenticacionRegistroService {
+  private apiUrl = environment.apiUrl
   //private apiUrl = 'http://localhost:8080/api/autenticacion'; https://purer-trish-anemometrically.ngrok-free.dev
-  private apiUrl = 'https://purer-trish-anemometrically.ngrok-free.dev/api/autenticacion';
+  //private apiUrl = 'https://purer-trish-anemometrically.ngrok-free.dev/api/autenticacion';
 
   constructor(private http: HttpClient) {}
 
@@ -19,7 +21,7 @@ export class AutenticacionRegistroService {
   // Login
   login(correo: string, contrasenia: string): Observable<any> {
     const body = { correo, contrasenia};
-    return this.http.post(`${this.apiUrl}/login`, body);
+    return this.http.post(`${this.apiUrl}/autenticacion/login`, body);
   }
 
   // Guardar token y rol
