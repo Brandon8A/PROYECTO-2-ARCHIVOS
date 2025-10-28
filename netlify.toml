@@ -1,6 +1,6 @@
 [build]
   base = "Frontend/Proyecto-2-Archivos"
-  command = "npm install && npm run build -- --configuration production"
+  command = "npm run build"
   publish = "dist/Proyecto-2-Archivos/browser"
 
 [[redirects]]
