@@ -6,7 +6,8 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class AutenticacionRegistroService {
-  private apiUrl = 'http://localhost:8080/api/autenticacion';
+  //private apiUrl = 'http://localhost:8080/api/autenticacion'; https://purer-trish-anemometrically.ngrok-free.dev
+  private apiUrl = 'https://purer-trish-anemometrically.ngrok-free.dev/api/autenticacion';
 
   constructor(private http: HttpClient) {}
 
