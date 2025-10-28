@@ -1,4 +1,0 @@
-[build]
-  base = "Frontend/Proyecto-2-Archivos"
-  command = "npm install && npm run build -- --configuration production"
-  publish = "dist/Proyecto-2-Archivos"
