@@ -10,6 +10,24 @@ export class AuthInterceptor implements HttpInterceptor {
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const token = this.authService.getToken();
 
+    // Solo agregar el token si existe
+    if (token) {
+      const cloned = req.clone({
+        setHeaders: {
+          Authorization: `Bearer ${token}`
+        }
+      });
+      return next.handle(cloned);
+    }
+
+    // Si no hay token, continuar normal
+    return next.handle(req);
+  }
+
+  /*
+  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    const token = this.authService.getToken();
+
     if (token) {
       const cloned = req.clone({
         headers: req.headers.set('Authorization', 'Bearer ' + token)
@@ -18,5 +36,5 @@ export class AuthInterceptor implements HttpInterceptor {
     }
 
     return next.handle(req);
-  }
+  }*/
 }
